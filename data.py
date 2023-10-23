@@ -135,7 +135,7 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     start = pd.to_datetime(start)
     end = pd.to_datetime(end)
 
-    DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="10m")
+    DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="10min")
 
     # List all files for each date
     # ----------------------------
@@ -519,7 +519,7 @@ def goes_latest(
 
 def goes_nearesttime(
     attime,
-    within=pd.to_timedelta(config["nearesttime"].get("within", "10m")),
+    within=pd.to_timedelta(config["nearesttime"].get("within", "10min")),
     *,
     satellite=config["nearesttime"].get("satellite"),
     product=config["nearesttime"].get("product"),
