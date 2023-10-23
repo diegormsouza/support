@@ -135,13 +135,13 @@ def _goes_file_df(satellite, product, start, end, bands=None, refresh=True):
     start = pd.to_datetime(start)
     end = pd.to_datetime(end)
 
-    DATES = pd.date_range(f"{start:%Y-%m-%d %H:00}", f"{end:%Y-%m-%d %H:00}", freq="10min")
+    DATES = pd.date_range(f"{start:%Y-%m-%d %H:%M}", f"{end:%Y-%m-%d %H:%M}", freq="10min")
 
     # List all files for each date
     # ----------------------------
     files = []
     for DATE in DATES:
-        files += fs.ls(f"{satellite}/{product}/{DATE:%Y/%j/%H/}", refresh=refresh)
+        files += fs.ls(f"{satellite}/{product}/{DATE:%Y/%j/%H/%M/}", refresh=refresh)
 
     # Build a table of the files
     # --------------------------
